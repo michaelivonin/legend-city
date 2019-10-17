@@ -327,12 +327,17 @@ li {
     padding: 0;
 }
 
+.shop_item-wrapper {
+    display: flex;
+}
 
 .shop_item {
     border: solid 1px #eee;
-    display: block;
+    display: flex;
     color: #000!important;
     margin-bottom: 20px;
+    flex-direction: column;
+    width: 100%;
 }
 
 .shop_item__title {
@@ -340,6 +345,7 @@ li {
     border-bottom: solid 1px #eee;
     position: relative;
     overflow: hidden;
+    flex: 1;
 }
 
 .shop_item__title h3 {
@@ -348,6 +354,7 @@ li {
     font-size: 20px;
     word-wrap: break-word;
     font-weight: 400;
+    padding-right: 46px;
 }
 
 .shop_item__title___right {

@@ -1,20 +1,24 @@
 "use strict";
 
+const SERVER_URL = "http://localhost:3000/shops";
+
 class Shops extends React.Component {
   constructor(props) {
     super(props);
+    this.getShops = this.getShops.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       isLoading: false,
-      serverUrl: "http://localhost:3000/shops",
       shops: null,
+      error: null,
     };
   }
 
-  componentDidMount() {
+  getShops(url) {
     this.setState({isLoading: true});
-    fetch(this.state.serverUrl)
+
+    fetch(url)
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -22,20 +26,27 @@ class Shops extends React.Component {
           shops: data,
         });
       })
-      .catch((error) => {
+      .catch(error => {
+        this.setState({
+          error,
+          isLoading: false,
+        });
         console.log("error", error);
-        this.setState({isLoading: false});
       });
+  }
+
+  componentDidMount() {
+    this.getShops(SERVER_URL);
   }
 
   handleClick(e, key, isFavorite) {
     e.preventDefault();
-    const { shops, serverUrl } = this.state;
+    const shops = this.state.shops;
 
-    Object.assign(shops.find((shop) => shop.id === key), {isFavorite: !isFavorite});
+    shops.find(shop => shop.id === key).isFavorite = !isFavorite;
     this.setState({shops: shops});
 
-    fetch(`${serverUrl}/${key}`, {
+    fetch(`${SERVER_URL}/${key}`, {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
@@ -43,34 +54,24 @@ class Shops extends React.Component {
       body: JSON.stringify({isFavorite: !isFavorite})
     })
       .then(() => console.log("Done"))
-      .catch((error) => {
+      .catch(error => {
+        this.setState({
+          error,
+          isLoading: false,
+        });
         console.log("error", error);
-        this.setState({isLoading: false});
       });
   }
 
   handleChange(e) {
-    let urlWithParams = (e.target.value === "new") ?
-      `${this.state.serverUrl}?isNew=true` : (e.target.value === "favorite") ?
-        `${this.state.serverUrl}?isFavorite=true` : this.state.serverUrl;
+    let urlWithParams = (e.target.value === "new") ? `${SERVER_URL}?isNew=true` :
+      (e.target.value === "favorite") ? `${SERVER_URL}?isFavorite=true` : SERVER_URL;
 
-    this.setState({isLoading: true});
-    fetch(urlWithParams)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          isLoading: false,
-          shops: data,
-        });
-      })
-      .catch((error) => {
-        console.log("error", error);
-        this.setState({isLoading: false});
-      });
+    this.getShops(urlWithParams);
   }
 
   render() {
-    const { isLoading, shops } = this.state;
+    const { isLoading, shops, error } = this.state;
 
     return (
       <div className="shops__wrapper">
@@ -96,29 +97,17 @@ class Shops extends React.Component {
         <div className="shop">
           <div className="container_fluid">
             <div className="row">
-              {isLoading ?
-                "Загрузка..." :
+              {error ? error.message :
+                isLoading ? "Загрузка..." :
                 !shops || shops.map((shop) => (
                   <div
-                    className="col-xl-4"
+                    className="col-xl-4 shop_item-wrapper"
                     key={shop.id}
-                    style={{display: "flex"}}
                     onClick={(e) => this.handleClick(e, shop.id, shop.isFavorite)}
                   >
-                    <a
-                      href="shop_full.html"
-                      className="shop_item"
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        width: "100%"
-                      }}
-                    >
-                      <div
-                        className="shop_item__title"
-                        style={{flex: "1"}}
-                      >
-                        <h3 style={{paddingRight: "46px"}}>{shop.title}</h3>
+                    <a href="shop_full.html" className="shop_item">
+                      <div className="shop_item__title">
+                        <h3>{shop.title}</h3>
                         <div className="shop_item__title___right">
                           <button className={shop.isFavorite ? "like like_active" : "like"}>
                             <i className="fas fa-heart"></i>
@@ -142,8 +131,7 @@ class Shops extends React.Component {
                       </div>
                     </a>
                   </div>
-                )
-              )}
+              ))}
             </div>
           </div>
         </div>
