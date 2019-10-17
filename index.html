@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Legend CRM</title>
+    <!-- style -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="toolbar">
+            <div class="toolbar_line">
+                <div class="container">
+                    <div class="toolbar_line__support">
+                        <span>Служба техподдержки:</span> 8 800 500-40-20
+                    </div>
+                    <div class="toolbar_line__right">
+                        <div class="line_right__valute">
+                            <div class="dropdown">
+                                <button class="line_right__valute___dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    
+                                    <div class="valute">
+                                        <span></span> 1,500 <small>₽</small>
+                                    </div>
+                                    <span>Вывести</span>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">14,500 <small>₽</small></a>
+                                    <a class="dropdown-item" href="#">700 <small>$</small></a>
+                                    <a class="dropdown-item" href="#">450 <small>€</small></a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">550 <small>LB</small></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line_right__profile">
+                            <div class="dropdown">
+                                <button class="dropdown-toggle line_right__profile___dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img class="profile_avatar" src="img/ava_30x30x2.png">
+                                    <div class="profile_name">Артем</div>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Профиль</a>
+                                    <a class="dropdown-item" href="#">Настройки</a>
+                                    <a class="dropdown-item" href="#">Выход</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="toolbar_menu">
+                <div class="container">
+                    <a href="index.html" class="toolbar_menu__logo"><img src="img/logo.svg"></a>
+                    <div class="toolbar_menu__right">
+                        <a href="index.html" class="act">Заведения</a>
+                        <a href="cashback.html">Кэшбэк</a>
+                    </div>
+                    <div class="toolbar_menu__dropdown">
+                        <div class="dropdown">
+                            <button class="toolbar_menu__dropdown___button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-bars"></i>
+                                </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item act" href="index.html">Заведения</a>
+                                <a class="dropdown-item" href="cashback.html">Кэшбэк</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="inner">
+            <div class="container">
+                <div class="side">
+                    <div class="side_card">
+                        <div class="side_card__title">
+                            Информация о карте
+                        </div>
+                        <div class="side_card__name">
+                            Артем Райм
+                        </div>
+                        <div class="side_card__number">
+                            <img src="img/side_car.svg"> 000 000 432
+                        </div>
+                    </div>
+                    <div class="slide_cat">
+                        <div class="slide_cat__title">
+                            Категории
+                        </div>
+                        <div class="slide_cat__box">
+                            <label class="main_checkbox">
+                                <input type="checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                                Все
+                            </label>
+                            <label class="main_checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Магазины
+                            </label>
+                            <label class="main_checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Еда
+                            </label>
+                            <label class="main_checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Авто
+                            </label>
+                            <label class="main_checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Сферауслуг
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="bunner">
+                        <a href="#"><img src="img/bunner.png"></a>
+                    </div>
+                    <div id="shops"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="js/Shops.js" type="text/babel"></script>
+    <!-- HTML5 shiv and Respond.js for IE8 support of HTML5 elements and media queries. All other JS at the end of file. -->
+    <!-- [if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</body>
+</html>
