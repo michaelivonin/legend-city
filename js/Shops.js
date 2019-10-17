@@ -30,12 +30,9 @@ class Shops extends React.Component {
 
   handleClick(e, key, isFavorite) {
     e.preventDefault();
-    const button = e.target.closest("button");
-    if (!button) return false;
-    button.classList.toggle("like_active");
-
     const { shops, serverUrl } = this.state;
-    Object.assign(shops[key], {isFavorite: !isFavorite});
+
+    Object.assign(shops.find((shop) => shop.id === key), {isFavorite: !isFavorite});
     this.setState({shops: shops});
 
     fetch(`${serverUrl}/${key}`, {
@@ -101,12 +98,12 @@ class Shops extends React.Component {
             <div className="row">
               {isLoading ?
                 "Загрузка..." :
-                !shops || shops.map((shop, i) => (
+                !shops || shops.map((shop) => (
                   <div
                     className="col-xl-4"
-                    key={i}
+                    key={shop.id}
                     style={{display: "flex"}}
-                    onClick={(e) => this.handleClick(e, i, shop.isFavorite)}
+                    onClick={(e) => this.handleClick(e, shop.id, shop.isFavorite)}
                   >
                     <a
                       href="shop_full.html"
